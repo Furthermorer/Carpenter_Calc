@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/arch_height_fragment">
+
+    <fragment
+        android:id="@+id/slope_coefficient_fragment"
+        android:name="com.carpenter_calc.ui.SlopeCoefficient.SlopeCoefficient"
+        android:label="@string/title_home"
+        tools:layout="@layout/slope_coefficient_fragment" />
+
+    <fragment
+        android:id="@+id/arch_height_fragment"
+        android:name="com.carpenter_calc.ui.ArchHeight.ArchHeight"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/arch_height_fragment" />
+
+    <fragment
+        android:id="@+id/arc_radius_fragment"
+        android:name="com.carpenter_calc.ui.ArcRadius.ArcRadius"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/arc_radius_fragment" />
+
+    <fragment
+        android:id="@+id/regular_polygon_fragment"
+        android:name="com.carpenter_calc.ui.RegularPolygon.RegularPolygon"
+        android:label="正多边形"
+        tools:layout="@layout/regular_polygon_fragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.carpenter_calc.ui.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+</navigation>
