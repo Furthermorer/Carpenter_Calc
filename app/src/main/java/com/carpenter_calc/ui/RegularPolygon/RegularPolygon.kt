@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.carpenter_calc.R
 import com.carpenter_calc.databinding.RegularPolygonFragmentBinding
 import java.math.BigDecimal
 import java.math.MathContext
@@ -24,10 +23,10 @@ class RegularPolygon : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         regularPolygonViewModel =
             ViewModelProvider(this).get(RegularPolygonViewModel::class.java)
-        val root = inflater.inflate(R.layout.slope_coefficient_fragment, container, false)
+        //val root = inflater.inflate(R.layout.slope_coefficient_fragment, container, false)
         _binding = RegularPolygonFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -35,22 +34,22 @@ class RegularPolygon : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var editText1 = binding.editTextNumberDecimal
-        var textView = binding.textView3
-        var button = binding.button
+        val editText1 = binding.editTextNumberDecimal
+        val textView = binding.textView3
+        val button = binding.button
         textView.movementMethod = ScrollingMovementMethod()
         button.setOnClickListener{
             textView.text=""
-            var n:BigDecimal
-            var a:BigDecimal
-            var b:BigDecimal
-            var c:BigDecimal
+            val n:BigDecimal
+            val a:BigDecimal
+            val b:BigDecimal
+            val c:BigDecimal
             var d:BigDecimal
             var ew:BigDecimal
             var f:BigDecimal
-            var g:BigDecimal
-            var h:BigDecimal
-            var saved:BigDecimal = BigDecimal.ZERO
+            val g:BigDecimal
+            val h:BigDecimal
+            var saved:BigDecimal
 
             n = editText1.text.toString().toBigDecimal()
             if(n<3.toBigDecimal()){

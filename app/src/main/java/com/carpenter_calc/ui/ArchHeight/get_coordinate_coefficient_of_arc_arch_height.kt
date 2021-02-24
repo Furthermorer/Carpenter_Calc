@@ -1,21 +1,18 @@
 package com.carpenter_calc.ui.ArchHeight
 
-import android.app.ActionBar
 import android.content.Context
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import com.carpenter_calc.R
 import com.carpenter_calc.databinding.FragmentGetCoordinateCoefficientOfArcArchHeightBinding
-import com.carpenter_calc.sqrt
 import java.math.BigDecimal
+import com.carpenter_calc.big.BigDecimalMath.*
+import java.math.MathContext
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,9 +35,9 @@ class get_coordinate_coefficient_of_arc_arch_height : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.arch_height_fragment, container, false)
+        //val root = inflater.inflate(R.layout.arch_height_fragment, container, false)
         _binding =FragmentGetCoordinateCoefficientOfArcArchHeightBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -67,15 +64,15 @@ class get_coordinate_coefficient_of_arc_arch_height : Fragment() {
                 openSoftKeyboard(this.requireContext(),textView)
             }
             else{
-                var re = r.subtract(sqrt(tep,6))
+                val re = r.subtract(sqrt(tep, MathContext(6)))
                 textView.text = String.format("%.4f%%\n", re)
                 var x:BigDecimal
                 var result:BigDecimal
                 for (i in 0..9) {
-                    var iB=i.toBigDecimal()
+                    val iB=i.toBigDecimal()
                     x = b.multiply(iB).divide(fenmu)
-                    var x2 = x.pow(2)
-                    result = sqrt(r2.subtract(x2),6).subtract(sqrt(tep,6))
+                    val x2 = x.pow(2)
+                    result = sqrt(r2.subtract(x2),MathContext(6)).subtract(sqrt(tep,MathContext(6)))
                     textView2.append(String.format("坐标：%d 拱高坐标系数：%.6f", i, result))
                     if (i != 9)
                         textView2.append("\n")

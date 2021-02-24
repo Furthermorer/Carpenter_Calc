@@ -7,11 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.carpenter_calc.R
-import com.carpenter_calc.big.BigDecimalMath
-import com.carpenter_calc.databinding.FragmentGetSlopeCoefficientBinding
 import com.carpenter_calc.databinding.FragmentGetSlopeCoefficientOfArbitraryTriangularBinding
-import com.carpenter_calc.sqrt
 import java.math.BigDecimal
 import java.math.MathContext
 import com.carpenter_calc.big.BigDecimalMath.*
@@ -39,9 +35,9 @@ class get_slope_coefficient_of_arbitrary_triangular : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.slope_coefficient_fragment, container, false)
+        //val root = inflater.inflate(R.layout.slope_coefficient_fragment, container, false)
         _binding = FragmentGetSlopeCoefficientOfArbitraryTriangularBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -62,13 +58,13 @@ class get_slope_coefficient_of_arbitrary_triangular : Fragment() {
             a = editText1.text.toString().toBigDecimal()
             b = editText2.text.toString().toBigDecimal()
             c = editText3.text.toString().toBigDecimal()
-            var a2 = a.pow(2)
-            var b2 = b.pow(2)
-            var c2 = c.pow(2)
+            val a2 = a.pow(2)
+            val b2 = b.pow(2)
+            val c2 = c.pow(2)
             var max:BigDecimal
             max = if (a > b) a else b
             max = if (c > max)c else max
-            var p = (a.add(b).add(c)).divide(2.toBigDecimal())
+            val p = (a.add(b).add(c)).divide(2.toBigDecimal())
             if(a< BigDecimal.ZERO||b<BigDecimal.ZERO||c<BigDecimal.ZERO){
                 Toast.makeText(this.requireContext(), "三边长应都大于0。", Toast.LENGTH_SHORT).show()
             }
@@ -76,30 +72,30 @@ class get_slope_coefficient_of_arbitrary_triangular : Fragment() {
                 Toast.makeText(this.requireContext(), "两小边长之和应大于第三边。", Toast.LENGTH_SHORT).show()
             }
             else{
-                var s1 = p.multiply(p.subtract(a)).multiply(p.subtract(b)).multiply(p.subtract(c))
+                val s1 = p.multiply(p.subtract(a)).multiply(p.subtract(b)).multiply(p.subtract(c))
                 val HUD = 100.toBigDecimal()
-                var s = sqrt(s1,13)
-                var s_2 = s.multiply(2.toBigDecimal())
-                var p2 = p.multiply(2.toBigDecimal())
+                val s = sqrt(s1,MathContext(13))
+                val s_2 = s.multiply(2.toBigDecimal())
+                val p2 = p.multiply(2.toBigDecimal())
                 var resulta = (p2.multiply(p.subtract(a)).subtract(b.multiply(c))).divide(s_2,13,RoundingMode.HALF_UP).multiply(HUD)
                 var resultb = (p2.multiply(p.subtract(b)).subtract(a.multiply(c))).divide(s_2,13,RoundingMode.HALF_UP).multiply(HUD)
                 var resultc = (p2.multiply(p.subtract(c)).subtract(a.multiply(b))).divide(s_2,13,RoundingMode.HALF_UP).multiply(HUD)
-                var resultaa = b.multiply(c).divide(s_2,13,RoundingMode.HALF_UP)
+                val resultaa = b.multiply(c).divide(s_2,13,RoundingMode.HALF_UP)
                 var d1:BigDecimal = asin(BigDecimal.ONE.divide(resultaa,13,RoundingMode.HALF_UP),MathContext(13)).multiply(180.toBigDecimal()).divide(PI,13,RoundingMode.HALF_UP)
-                var _x = b2.add(c2).subtract(a2)
-                var _y = a2.add(c2).subtract(b2)
-                var _z = a2.add(b2).subtract(c2)
+                val _x = b2.add(c2).subtract(a2)
+                val _y = a2.add(c2).subtract(b2)
+                val _z = a2.add(b2).subtract(c2)
                 if(_x < BigDecimal.ZERO)
                     d1 = 180.toBigDecimal().subtract(d1)
                 var d1fen = fen(d1)
                 var d1miao = miao(d1fen)
-                var resultbb = a.multiply(c).divide(s_2,13,RoundingMode.HALF_UP)
+                val resultbb = a.multiply(c).divide(s_2,13,RoundingMode.HALF_UP)
                 var d2:BigDecimal = asin(1.toBigDecimal().divide(resultbb,13,RoundingMode.HALF_UP),MathContext(13)).multiply(180.toBigDecimal()).divide(PI,13,RoundingMode.HALF_UP)
                 if(_y < BigDecimal.ZERO)
                     d2 = 180.toBigDecimal().subtract(d2)
                 var d2fen = fen(d2)
                 var d2miao = miao(d2fen)
-                var resultcc = a.multiply(b).divide(s_2,13,RoundingMode.HALF_UP)
+                val resultcc = a.multiply(b).divide(s_2,13,RoundingMode.HALF_UP)
                 var d3:BigDecimal = asin(1.toBigDecimal().divide(resultcc,13,RoundingMode.HALF_UP),MathContext(13)).multiply(180.toBigDecimal()).divide(PI,13,RoundingMode.HALF_UP)
                 if(_z < BigDecimal.ZERO)
                     d3 = 180.toBigDecimal().subtract(d3)
@@ -148,11 +144,11 @@ class get_slope_coefficient_of_arbitrary_triangular : Fragment() {
         }
     }
     fun fen(d:BigDecimal):BigDecimal{
-        var dfen:BigDecimal=d.subtract(d.setScale(0,RoundingMode.DOWN)).multiply(60.toBigDecimal())
+        val dfen:BigDecimal=d.subtract(d.setScale(0,RoundingMode.DOWN)).multiply(60.toBigDecimal())
         return dfen
     }
     fun miao(d:BigDecimal):BigDecimal{
-        var dmiao:BigDecimal=d.subtract(d.setScale(0,RoundingMode.DOWN)).multiply(60.toBigDecimal())
+        val dmiao:BigDecimal=d.subtract(d.setScale(0,RoundingMode.DOWN)).multiply(60.toBigDecimal())
         return dmiao
     }
 

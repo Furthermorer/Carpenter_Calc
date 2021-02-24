@@ -8,13 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.carpenter_calc.R
 import com.carpenter_calc.databinding.FragmentGetAngleCoefficientTableBinding
-import com.carpenter_calc.sqrt
 import java.math.BigDecimal
 import com.carpenter_calc.big.BigDecimalMath.*
 import java.math.MathContext
-import java.math.RoundingMode
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,9 +35,9 @@ class get_angle_coefficient_table : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.arch_height_fragment, container, false)
+        //val root = inflater.inflate(R.layout.arch_height_fragment, container, false)
         _binding = FragmentGetAngleCoefficientTableBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -58,8 +55,8 @@ class get_angle_coefficient_table : Fragment() {
         button.setOnClickListener {
             Log.d("btnSetup", "Selected")
             var d = editText1.text.toString().toBigDecimal()
-            var f = editText2.text.toString().toBigDecimal()
-            var m = editText3.text.toString().toBigDecimal()
+            val f = editText2.text.toString().toBigDecimal()
+            val m = editText3.text.toString().toBigDecimal()
             //textView2.text = "2"
             textView.text=""
             if((d< BigDecimal.ZERO || f< BigDecimal.ZERO||m< BigDecimal.ZERO)||(d == BigDecimal.ZERO && f == BigDecimal.ZERO && m <= BigDecimal.ZERO)){
@@ -70,8 +67,8 @@ class get_angle_coefficient_table : Fragment() {
             }
             else{
                 d = d.add(f.divide(60.toBigDecimal(),MathContext(13))).add(m.divide(3600.toBigDecimal(),MathContext(13)))
-                var pd = BigDecimal.ONE.divide(tan(d.multiply(PI).divide(180.toBigDecimal(), MathContext(13)),MathContext(13)), MathContext(13)).multiply(100.toBigDecimal())
-                var pdxs = sqrt(BigDecimal.ONE.add(pd.pow(2).divide(10000.toBigDecimal(), MathContext(13))), MathContext(13))
+                val pd = BigDecimal.ONE.divide(tan(d.multiply(PI).divide(180.toBigDecimal(), MathContext(13)),MathContext(13)), MathContext(13)).multiply(100.toBigDecimal())
+                val pdxs = sqrt(BigDecimal.ONE.add(pd.pow(2).divide(10000.toBigDecimal(), MathContext(13))), MathContext(13))
                 textView.append(String.format("坡度：%.4f%%\n" +
                         "坡度系数：%.4f\n",pd.abs(),pdxs))
             }

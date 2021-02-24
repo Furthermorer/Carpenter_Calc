@@ -1,13 +1,11 @@
 package com.carpenter_calc.ui.SlopeCoefficient
 
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.carpenter_calc.R
 import java.math.MathContext
 import com.carpenter_calc.big.BigDecimalMath.*
 import com.carpenter_calc.databinding.FragmentGetSlopeCoefficientBinding
@@ -33,9 +31,9 @@ class get_slope_coefficient : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.slope_coefficient_fragment, container, false)
+        //val root = inflater.inflate(R.layout.slope_coefficient_fragment, container, false)
         _binding =FragmentGetSlopeCoefficientBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

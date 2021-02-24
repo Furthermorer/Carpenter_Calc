@@ -3,16 +3,11 @@ package com.carpenter_calc.ui.ArchHeight
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.carpenter_calc.R
-import androidx.viewpager2.widget.ViewPager2
 import com.carpenter_calc.databinding.ArchHeightFragmentBinding
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 //import kotlinx.android.synthetic.main.arch_height_fragment.*
@@ -30,10 +25,10 @@ class ArchHeight : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         archHeightViewModel =
                 ViewModelProvider(this).get(ArchHeightViewModel::class.java)
-        val root = inflater.inflate(R.layout.arch_height_fragment, container, false)
+        //val root = inflater.inflate(R.layout.arch_height_fragment, container, false)
         //val textView: TextView = root.findViewById(R.id.text_dashboard)
         /*archHeightViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it

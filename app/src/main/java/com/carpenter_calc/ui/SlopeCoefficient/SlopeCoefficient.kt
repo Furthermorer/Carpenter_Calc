@@ -4,22 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.carpenter_calc.R
-import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.carpenter_calc.databinding.ArchHeightFragmentBinding
 import com.carpenter_calc.databinding.SlopeCoefficientFragmentBinding
-import com.carpenter_calc.ui.ArchHeight.get_arch_height_of_arc
-import com.carpenter_calc.ui.ArchHeight.get_coordinate_coefficient_of_arc_arch_height
-import com.carpenter_calc.ui.ArchHeight.get_grading_arch_high_coefficient_of_arc
 import com.google.android.material.tabs.TabLayoutMediator
 
-//import kotlinx.android.synthetic.main.slope_coefficient_fragment.*
+
 
 class SlopeCoefficient : Fragment() {
     private var _binding: SlopeCoefficientFragmentBinding? = null
@@ -30,10 +21,10 @@ class SlopeCoefficient : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         slopeCoefficientViewModel =
                 ViewModelProvider(this).get(SlopeCoefficientViewModel::class.java)
-        val root = inflater.inflate(R.layout.slope_coefficient_fragment, container, false)
+        //val root = inflater.inflate(R.layout.slope_coefficient_fragment, container, false)
         /*val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it

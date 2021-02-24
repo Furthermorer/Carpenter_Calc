@@ -10,15 +10,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.carpenter_calc.R
 import com.carpenter_calc.databinding.FragmentGetGradingArchHighCoefficientOfArcBinding
 import java.math.BigDecimal
-import java.math.BigInteger
-import java.math.RoundingMode
-import com.carpenter_calc.log10
 import java.math.MathContext
 import com.carpenter_calc.big.BigDecimalMath.*
-import java.math.BigDecimal.ROUND_UP
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,9 +36,9 @@ class get_grading_arch_high_coefficient_of_arc : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.arch_height_fragment, container, false)
+        //val root = inflater.inflate(R.layout.arch_height_fragment, container, false)
         _binding =FragmentGetGradingArchHighCoefficientOfArcBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -63,11 +59,11 @@ class get_grading_arch_high_coefficient_of_arc : Fragment() {
             var gonggaoxs:BigDecimal
             var xiebianxs:BigDecimal
             var w2:BigDecimal
-            var t:BigDecimal
-            var k:BigDecimal
-            var dek:BigDecimal
-            var logx:BigDecimal
-            var ix:BigDecimal
+            val t:BigDecimal
+            val k:BigDecimal
+            val dek:BigDecimal
+            val logx:BigDecimal
+            val ix:BigDecimal
             w = editText1.text.toString().toBigDecimal()
             k = w
             w2 = w.pow(2)
@@ -114,9 +110,9 @@ class get_grading_arch_high_coefficient_of_arc : Fragment() {
         imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
     private fun xieBianxs(w:BigDecimal): BigDecimal {
-        var m = MathContext(8)
-        var w1 = (PI.divide(2.toBigDecimal()).subtract(asin(w.divide(100.toBigDecimal()),m).divide(2.toBigDecimal())))
-        var w2 = sin(w1,m)
+        val m = MathContext(8)
+        val w1 = (PI.divide(2.toBigDecimal()).subtract(asin(w.divide(100.toBigDecimal()),m).divide(2.toBigDecimal())))
+        val w2 = sin(w1,m)
         return w.divide(w2,m)
     }
     override fun onDestroyView() {
