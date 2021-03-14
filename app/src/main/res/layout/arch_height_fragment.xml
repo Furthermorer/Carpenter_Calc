@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:focusable="true"
         android:contextClickable="true"
         tools:ignore="MissingConstraints">
 
@@ -24,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:focusable="true"
             android:contextClickable="true"
             android:text="Monday" />
 
@@ -31,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:focusable="true"
             android:contextClickable="true"
             android:text="Tuesday" />
 
@@ -38,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:focusable="true"
             android:contextClickable="true"
             android:text="Wednesday" />
     </com.google.android.material.tabs.TabLayout>
