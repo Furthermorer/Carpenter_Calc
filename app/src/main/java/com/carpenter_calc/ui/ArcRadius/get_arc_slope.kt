@@ -39,17 +39,25 @@ class get_arc_slope : Fragment() {
             textView.text = ""
             val a: BigDecimal = editText1.text.toString().toBigDecimal()
             val b: BigDecimal = editText2.text.toString().toBigDecimal()
-            if (a <= BigDecimal.ZERO || b <= BigDecimal.ZERO || a >= b) {
-                Toast.makeText(this.requireContext(), "拱高和半弦长都应大于0，半弦长应大于拱高。", Toast.LENGTH_SHORT).show()
+            if (a <= BigDecimal.ZERO || b <= BigDecimal.ZERO || a > b) {
+                Toast.makeText(this.requireContext(), "拱高和半弦长都应大于0，半弦长应大于等于拱高。", Toast.LENGTH_SHORT).show()
+            }
+            else if(a == b){
+                textView.append(String.format("圆弧搭肩度数为：45°00′00.00″\n"+
+                        "圆弧搭肩坡度为：100.00%%\n"))
             }
             else {
-                val tan_a = a.divide(b, MathContext(13))
-                val tan2_a = tan_a.pow(2)
-                val numerator = 2.toBigDecimal().multiply(tan_a)
-                val denominator = BigDecimal.ONE.subtract(tan2_a)
-                val slope = numerator.divide(denominator,MathContext(13))
-                val radian = acot(slope,MathContext(13))
-                val degree = radian.multiply(180.toBigDecimal()).divide(PI,MathContext(13))
+                val b_a = b.divide(a, MathContext(13))
+                val a_b = BigDecimal.ONE.divide(b_a,MathContext(13))
+                //val tan_a = a.divide(b, MathContext(13))
+                //val tan2_a = tan_a.pow(2)
+                val slope = 2.toBigDecimal().divide(b_a.subtract(a_b),MathContext(13))
+//                val numerator = 2.toBigDecimal().multiply(tan_a)
+//                val denominator = BigDecimal.ONE.subtract(tan2_a)
+//                val slope = numerator.divide(denominator,MathContext(13))
+//                val radian = acot(slope,MathContext(13))
+                val radian = 2.toBigDecimal().multiply(acot(b_a, MathContext(13)))
+                val degree = 90.toBigDecimal().subtract(radian.multiply(180.toBigDecimal()).divide(PI,MathContext(13)))
                 var ew = degree.subtract(degree.setScale(0, RoundingMode.DOWN)).multiply(60.toBigDecimal())
                 val g = ew.subtract(ew.setScale(0, RoundingMode.DOWN)).multiply(60.toBigDecimal())
                 ew = ew.setScale(0, RoundingMode.DOWN)
